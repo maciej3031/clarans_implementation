@@ -1,27 +1,33 @@
 import matplotlib.pyplot as plt
 
+from model import Point
 
-def write_to_file(filename, nodes, clusters):
-    if len(nodes) != len(clusters):
-        raise ValueError('Length of nodes and clusters does not match.')
+
+def write_to_file(filename, points):
     with open(filename, 'w+') as f:
-        for i in range(len(nodes)):
-            f.write("{} {} {}\n".format(nodes[i][0], nodes[i][1], clusters[i]))
+        for num, pnt in enumerate(points):
+            f.write("{} {} {}\n".format(pnt.x, pnt.y, pnt.cluster))
 
 
-def read_data():
-    with open("data.txt", "r") as f:
-        points = f.readlines()
-        for j in range(len(points)):
-            coordinates = points[j].split()
-            coordinates[0] = int(coordinates[0])
-            coordinates[1] = int(coordinates[1])
-            points[j] = tuple(coordinates)
+def read_from_file(filename):
+    with open(filename, "r") as f:
+        points = []
+        for coordinates in f.readlines():
+            point = Point(*[int(i) for i in coordinates.split()])
+            points.append(point)
     return points
 
 
-def plot_data(points, medoids=None):
-    plt.scatter(*zip(*points))
+def plot_data(points, medoids=None, clusters=False):
+    if clusters:
+        for med in medoids:
+            indices_per_claster = [num for num, pnt in enumerate(points) if pnt.cluster == med]
+            claster = [points[idx] for idx in indices_per_claster]
+            plt.scatter(*zip(*[(pnt.x, pnt.y) for pnt in claster]))
+    else:
+        plt.scatter(*zip(*[(pnt.x, pnt.y) for pnt in points]))
+
     if medoids is not None:
-        plt.scatter(*zip(*[points[i] for i in medoids]))
+        plt.scatter(*zip(*[(points[i].x, points[i].y) for i in medoids]), color='black')
+
     plt.show()
