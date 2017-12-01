@@ -8,16 +8,16 @@ if __name__ == '__main__':
     mincost = 999999
 
     p = argparse.ArgumentParser()
-    p.add_argument('--number_of_medoids', help='Number of medoids to find.', default=5, type=int)
-    p.add_argument('--numlocal', help='Number of local minimum to obtain.', default=15, type=int)
-    p.add_argument('--maxneighbour', help='Maximal number of neighbours in claster.', default=100, type=int)
-    p.add_argument('--output', help='Output file name.', default='output.txt')
-    p.add_argument('--input', help='Input file name.', default='data.txt')
+    p.add_argument('--number_of_medoids', help='Number of medoids to find. Default = 8', default=8, type=int)
+    p.add_argument('--numlocal', help='Number of local minimum to obtain. Default = 20', default=20, type=int)
+    p.add_argument('--maxneighbor', help='Maximal number of neighbors in claster. Default = 80', default=80, type=int)
+    p.add_argument('--output', help='Output file name. Default = output.txt', default='output.txt')
+    p.add_argument('--input', help='Input file name. Default = data.txt', default='data.txt')
     args = p.parse_args()
 
     points = read_from_file(args.input)
 
-    clarans_model = Clarans(points, args.numlocal, args.maxneighbour, args.number_of_medoids)
+    clarans_model = Clarans(points, args.numlocal, args.maxneighbor, args.number_of_medoids)
     medoids, points = clarans_model.run()
 
     write_to_file(args.output, points)

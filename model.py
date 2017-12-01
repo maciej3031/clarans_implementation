@@ -15,6 +15,8 @@ class Point(object):
 
 
 class Clarans(object):
+
+    # Punkt 1
     def __init__(self, points, numlocal, maxneighbor, number_of_medoids):
         self.points = points
         self.point_indices = len(points)
@@ -36,31 +38,42 @@ class Clarans(object):
             self.distance_matrix.fill(0)
             self.local_best_medoids = []
 
-            temp_medoids_indices = random.sample(range(self.point_indices), self.number_of_medoids)
-            self.set_distances(temp_medoids_indices)
-            self.assign_to_clasters(temp_medoids_indices)
-            cost = self.get_total_distance(temp_medoids_indices)
+            # Punkt 2
+            temp_medoids = self.get_random_medoids()
+            self.set_distances(temp_medoids)
+            self.assign_to_clasters(temp_medoids)
+            cost = self.get_total_distance(temp_medoids)
 
+            # Punkt 3
             j = 1
             while j <= self.maxneighbor:
-                new_medoid_index = self.get_random_neighbor(temp_medoids_indices)
-                self.replace_random_medoid(temp_medoids_indices, new_medoid_index)
-                self.update_distance_matrix_for_new_medoid(temp_medoids_indices, new_medoid_index)
-                self.assign_to_clasters(temp_medoids_indices)
-                new_cost = self.get_total_distance(temp_medoids_indices)
 
+                # Punkt 4
+                new_medoid_index = self.get_random_neighbor(temp_medoids)
+                self.replace_random_medoid(temp_medoids, new_medoid_index)
+                self.update_distance_matrix_for_new_medoid(temp_medoids, new_medoid_index)
+                self.assign_to_clasters(temp_medoids)
+                new_cost = self.get_total_distance(temp_medoids)
+
+                # Punkt 5
                 if new_cost < cost:
-                    self.local_best_medoids = temp_medoids_indices.copy()
+                    self.local_best_medoids = temp_medoids.copy()
                     cost = new_cost
                     j = 1
                     continue
                 else:
+
+                    # Punkt 6
                     j += 1
                     if j <= self.maxneighbor:
                         continue
+
+                    # Punkt 7
                     elif cost < self.mincost:
                         self.mincost = cost
                         self.best_medoids = self.local_best_medoids.copy()
+
+                    # Punkt 8
                     i += 1
                     if i > self.numlocal:
                         self.set_distances(self.best_medoids)
@@ -69,6 +82,9 @@ class Clarans(object):
                     else:
                         break
         pbar.close()
+
+    def get_random_medoids(self):
+        return random.sample(range(self.point_indices), self.number_of_medoids)
 
     @staticmethod
     def get_distance(pointA, pointB):

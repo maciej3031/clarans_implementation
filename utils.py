@@ -1,16 +1,18 @@
+import os
+
 import matplotlib.pyplot as plt
 
 from model import Point
 
 
 def write_to_file(filename, points):
-    with open(filename, 'w+') as f:
+    with open(os.path.join('data', filename), 'w+') as f:
         for num, pnt in enumerate(points):
             f.write("{} {} {}\n".format(pnt.x, pnt.y, pnt.cluster))
 
 
 def read_from_file(filename):
-    with open(filename, "r") as f:
+    with open(os.path.join('data', filename), "r") as f:
         points = []
         for coordinates in f.readlines():
             point = Point(*[int(i) for i in coordinates.split()])
