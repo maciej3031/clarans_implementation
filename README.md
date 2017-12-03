@@ -3,7 +3,7 @@
 1. Utwórz wirtualne środowisko pythona w wersji 3.5.2+ i uruchom je.
 2. Zainstaluj wymagania z pliku ```requirements.txt``` (```pip install -r requirements.txt```).
 3. Użyj ```python generate_data.py``` aby wygenerować przykładowe dane. Opcjonalnie użyj ```python show_data.py``` aby zwizualizować dane.
-4. Użyj ```python run_clarans.py``` aby uruchomić algorytm.
+4. Użyj ```python run_clarans.py``` aby uruchomić algorytm. Wynik zostanie zapisany do katalogu data jako output.txt oraz wyświetlony na ekranie w postaci graficznej.
 
 ## IMPLEMENTACJA ALGORYTMU CLARANS
 
@@ -20,7 +20,7 @@
  <br />
  <br />
  
-![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/clarans.png)
+![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/data/clarans.png)
 źródło: Raymond T. Ng, Jiawei Han - "Efficient and Effective Clustering Methods for Spatial Data Mining"
 
 ## WYNIKI DLA PRZYKŁADOWYCH DANYCH
