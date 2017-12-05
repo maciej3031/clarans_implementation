@@ -6,6 +6,10 @@ from tqdm import tqdm
 
 random.seed()
 
+# Komentarze i opis struktur danych w komentarzach
+# Raport w pdf, w nim wykres czasu działania dla różnych ilości danych, dla różnych wartości numlocal i maxneighbor
+# Obsługa polygonów + określić dla nich miarę grupowania - może jest w artykule. Wyniki działania na przykładowych danych.
+
 
 class Point(object):
     def __init__(self, x, y):

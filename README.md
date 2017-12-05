@@ -20,6 +20,13 @@
  <br />
  <br />
  
+## MODEL DANYCH PRZESTRZENNYCH
+
+Punkt w przestrzeni dwuwymiarowej o wsółrzędnych x i y.
+
+<br />
+
+ 
 ![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/data/clarans.png)
 źródło: Raymond T. Ng, Jiawei Han - "Efficient and Effective Clustering Methods for Spatial Data Mining"
 
