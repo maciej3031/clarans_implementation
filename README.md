@@ -8,6 +8,16 @@
 
 ## IMPLEMENTACJA ALGORYTMU CLARANS (Clustering Large Applications based on Randomized Search)
 
+Algorytm polega na znalezieniu najbardziej reprezentatywnych obiektów w każdym z klastrów dla których to obiektów koszt
+(np. suma odległość od pozostałych z nich należących do tego samego klastra) jest minimalny.
+Obiekty takie nazywamy medoidami. CLARANS opiera się na losowym wyszukiwaniu kandydatów na medoidów, policzeniu kosztu
+i porównaniu z aktualnym najlepszym lokalnie rozwiązaniem. Czynność ta jest powtarzana dopóki liczba wybranych losowo
+obiektów pod rząd nie przekroczy wartości *maxneighbor*. Wówczas koszt rozwiązania jest porównywany z najlepszym do tej
+pory osiągniętym rozwiązaniem globalnym i jeżeli jest on mniejszy to lokalne rozwiązanie staje się globalnym.
+Bez względu na to czy rozwiązanie lokalne stało się globalnym czy nie, licznik pętli zwiększany jest o 1,
+a algorytm wykonywany jest od nowa dopóki liczba takich przejść pętli nie osiągnie wartości *numlocal*.
+Wówczas zwracane jest aktualnie najlepsze globalnie rozwiązanie.
+
 1. Parametry wejściowe *numlocal* i *maxneighbor*. Zainicjalizuj *i = 1* oraz *mincost* równy bardzo dużej liczbie.
 2. Wybierz losowe obiekty i ustaw je jako aktualne rozwiązanie, oblicz dla nich koszt.
 3. Zainicjalizuj *j = 1*.
@@ -24,9 +34,11 @@
  
 ## MODEL DANYCH PRZESTRZENNYCH
 
-Jako model danych przyjęto punkty w przestrzeni dwuwymiarowej o współrzędnych x i y zaimplementowane jako klasa
-o atrybutach x oraz y. Drugim użytym modelem danych przestrzennych są poligony zdefiniowane także w
-przestrzeni dwuwymiarowej i zaimplementowane jako klasa z atrybutem vertices będącym listą zawierającą obiekty klasy Punkt.
+Jako model danych przyjęto punkty w przestrzeni dwuwymiarowej o współrzędnych x i y zaimplementowane jako klasa o atrybutach x oraz y.
+Drugim modelem danych przestrzennych użytych do analizy są poligony zdefiniowane także w przestrzeni dwuwymiarowej
+zaimplementowane jako klasa z atrybutem vertices będącym listą zawierającą obiekty klasy Punkt. Całość została zapisana języku Python. Koszt został zaimplementowany:
+- dla punktów jako suma odległości pomiędzy wszystkimi punktami w poszczególnych klastrach a medoidami w tych klastrach.
+- dla poligonów jako suma najmniejszej odległości pomiędzy wierzchołkami wszystkich poligonów w poszczególnych klastrach a poligonami będącymi medoidami w tych klastrach.
 
 <br />
 
@@ -43,3 +55,11 @@ przestrzeni dwuwymiarowej i zaimplementowane jako klasa z atrybutem vertices bę
  ### Wynik działania klasteryzacji algorytmem CLARANS:
 
 ![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/data/sample_output.png)
+
+ ### Losowo wygenerowane poligony w przestrzeni 2-wymiarowej:
+
+![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/data/sample_polygons_data.png)
+
+ ### Wynik działania klasteryzacji algorytmem CLARANS:
+
+![alt text](https://github.com/maciej3031/clarans_implementation/blob/master/data/sample_polygons_output.png)
