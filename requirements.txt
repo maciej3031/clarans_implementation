@@ -1,3 +1,4 @@
+colour==0.1.5
 cycler==0.10.0
 matplotlib==2.1.0
 numpy==1.13.3
