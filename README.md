@@ -9,14 +9,15 @@
 ## IMPLEMENTACJA ALGORYTMU CLARANS (Clustering Large Applications based on Randomized Search)
 
 Algorytm polega na znalezieniu najbardziej reprezentatywnych obiektów w każdym z klastrów dla których to obiektów koszt
-(np. suma odległość od pozostałych z nich należących do tego samego klastra) jest minimalny.
-Obiekty takie nazywamy medoidami. CLARANS opiera się na losowym wyszukiwaniu kandydatów na medoidów, policzeniu kosztu
-i porównaniu z aktualnym najlepszym lokalnie rozwiązaniem. Czynność ta jest powtarzana dopóki liczba wybranych losowo
-obiektów pod rząd nie przekroczy wartości *maxneighbor*. Wówczas koszt rozwiązania jest porównywany z najlepszym do tej
-pory osiągniętym rozwiązaniem globalnym i jeżeli jest on mniejszy to lokalne rozwiązanie staje się globalnym.
-Bez względu na to czy rozwiązanie lokalne stało się globalnym czy nie, licznik pętli zwiększany jest o 1,
-a algorytm wykonywany jest od nowa dopóki liczba takich przejść pętli nie osiągnie wartości *numlocal*.
-Wówczas zwracane jest aktualnie najlepsze globalnie rozwiązanie.
+(np. suma odległość od pozostałych z nich należących do tego samego klastra) jest minimalny. Obiekty takie nazywamy medoidami.
+Po wyborze medoidów każdy z klasterowanych obiektów trafia do klastra, którego reprezentantem jest najbliższy temu obiektowi medoid.
+CLARANS opiera się na losowym wyszukiwaniu kandydatów na medoidów, policzeniu kosztu i porównaniu z aktualnym najlepszym lokalnie rozwiązaniem.
+Czynność ta jest powtarzana dopóki liczba wybranych pod rząd losowo obiektów, których koszt jest większy od aktualnego
+najmniejszego kosztu lokalnego nie przekroczy wartości *maxneighbor*. Wówczas koszt najlepszego rozwiązania lokalnego
+jest porównywany z najlepszym do tej pory osiągniętym rozwiązaniem globalnym i jeżeli jest on mniejszy to lokalne
+rozwiązanie staje się globalnym. Bez względu na to czy rozwiązanie lokalne stało się globalnym czy nie, licznik
+pętli zwiększany jest o 1, a algorytm wykonywany jest od nowa dopóki liczba takich przejść pętli nie osiągnie
+wartości *numlocal*. Wówczas zwracane jest aktualnie najlepsze globalnie rozwiązanie.
 
 1. Parametry wejściowe *numlocal* i *maxneighbor*. Zainicjalizuj *i = 1* oraz *mincost* równy bardzo dużej liczbie.
 2. Wybierz losowe obiekty i ustaw je jako aktualne rozwiązanie, oblicz dla nich koszt.
@@ -35,10 +36,12 @@ Wówczas zwracane jest aktualnie najlepsze globalnie rozwiązanie.
 ## MODEL DANYCH PRZESTRZENNYCH
 
 Jako model danych przyjęto punkty w przestrzeni dwuwymiarowej o współrzędnych x i y zaimplementowane jako klasa o atrybutach x oraz y.
-Drugim modelem danych przestrzennych użytych do analizy są poligony zdefiniowane także w przestrzeni dwuwymiarowej
-zaimplementowane jako klasa z atrybutem vertices będącym listą zawierającą obiekty klasy Punkt. Całość została zapisana języku Python. Koszt został zaimplementowany:
+Drugim modelem danych przestrzennych użytych do analizy są poligony zdefiniowane także w przestrzeni dwuwymiarowej, zaimplementowane
+jako klasa z atrybutem vertices będącym listą zawierającą obiekty klasy Punkt należące do poligonu.
+Koszt został zaimplementowany:
 - dla punktów jako suma odległości pomiędzy wszystkimi punktami w poszczególnych klastrach a medoidami w tych klastrach.
 - dla poligonów jako suma najmniejszej odległości pomiędzy wierzchołkami wszystkich poligonów w poszczególnych klastrach a poligonami będącymi medoidami w tych klastrach.
+
 
 <br />
 
