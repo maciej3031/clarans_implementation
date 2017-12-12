@@ -4,7 +4,7 @@
  ```venv\Scripts\activate``` dla środowiska Windows lub ```source venv/bin/activate``` dla środowiska linux)
 2. Zainstaluj wymagania z pliku ```requirements.txt``` (```pip install -r requirements.txt```).
 
-## Opis interfejsu użytkownika
+## OPIS INTERFEJSU UŻYTKOWNIKA
 W programie mamy do użytku trzy polecenia:
 
 1. ```python generate_data.py``` – Generuje przykładowe dane do analizy.
@@ -27,7 +27,6 @@ Opcjonalne parametry:
 - ```--number_of_medoids 10``` – Liczba klastrów/medoidów do poszukiwania, domyślnie 10.
 - ```--numlocal 20``` – Wartość parametru numlocal, domyślnie 20.
 - ```--maxneighbor 80``` – Wartość parametru maxneighbor domyślnie 80
-
 
 ## IMPLEMENTACJA ALGORYTMU CLARANS (Clustering Large Applications based on Randomized Search)
 
