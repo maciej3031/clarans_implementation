@@ -3,8 +3,31 @@
 1. Utwórz wirtualne środowisko pythona w wersji 3.5.2+ i uruchom je (np.: ```virtualenv venv --python=3.5``` a następnie
  ```venv\Scripts\activate``` dla środowiska Windows lub ```source venv/bin/activate``` dla środowiska linux)
 2. Zainstaluj wymagania z pliku ```requirements.txt``` (```pip install -r requirements.txt```).
-3. Użyj ```python generate_data.py``` aby wygenerować przykładowe dane. Opcjonalnie użyj ```python show_data.py``` aby zwizualizować dane. Użyj flagi ```-p``` aby wygenerować poligony zamiast punktów.
-4. Użyj ```python run_clarans.py``` aby uruchomić algorytm. Wynik zostanie zapisany do katalogu data jako output.txt oraz wyświetlony na ekranie w postaci graficznej. Użyj flagi ```-p``` aby klasteryzować zbiór poligonów.
+
+## Opis interfejsu użytkownika
+W programie mamy do użytku trzy polecenia:
+
+1. ```python generate_data.py``` – Generuje przykładowe dane do analizy.
+Opcjonalne parametry:
+- ```-p, --polygons``` – Użyj poligonów zamiast punktów.
+- ```--filename nazwa_pliku.txt``` – Nazwa pliku wynikowego z zapisanymi danymi, domyślnie: data.txt.
+- ```--clusters_number 10``` – Liczba klastrów w danych, domyślnie: 10.
+- ```--objects_number 1000``` – Liczba obiektów (punktów/poligonów) do wygenerowania, domyślnie 1000.
+
+2. ```python show_data.py``` – Wyświetla plik z danymi.
+Opcjonalne parametry:
+- ```-p, --polygons``` – Użyj poligonów zamiast punktów.
+- ```--filename nazwa_pliku.txt``` – Nazwa pliku do wczytania z zapisanymi danymi, domyślnie: data.txt.
+
+3. ```python run_clarans.py``` – Uruchamia algorytm klasteryzacji.
+Opcjonalne parametry:
+- ```-p, --polygons``` – Użyj poligonów zamiast punktów.
+- ```--input nazwa_pliku.txt``` – Nazwa pliku z zapisanymi danymi do wczytania do klasteryzacji, domyślnie: data.txt.
+- ```--output nazwa_pliku.txt``` – Nazwa pliku do zapisania wyniku działania algorytmu, domyślnie: output.txt.
+- ```--number_of_medoids 10``` – Liczba klastrów/medoidów do poszukiwania, domyślnie 10.
+- ```--numlocal 20``` – Wartość parametru numlocal, domyślnie 20.
+- ```--maxneighbor 80``` – Wartość parametru maxneighbor domyślnie 80
+
 
 ## IMPLEMENTACJA ALGORYTMU CLARANS (Clustering Large Applications based on Randomized Search)
 

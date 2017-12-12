@@ -143,8 +143,6 @@ class Clarans(object):
                         print("\nCzas wykonania algorytmu: --- {} sekund ---".format(time.time() - start_time))
                         print("\nMinimalny koszt: {} ".format(self.mincost))
                         return self.best_medoids, self.objects
-                    else:
-                        break
         pbar.close()
 
     def get_random_medoids(self):
